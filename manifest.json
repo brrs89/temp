@@ -1,10 +1,12 @@
 {
-    "name": "Cuentatras",
-    "short_name": "Cuenta5Min",
-    "start_url": "temp/index.html",
+    "name": "Calendariu Escolar Asturies",
+    "short_name": "Calendariu",
+    "description": "Calendariu Escolar Asturies",
+    "start_url": "/temp/index.html",
+    "scope": "/temp/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#333333",
+    "theme_color": "#000000",
     "icons": [
       {
         "src": "icon-192x192.svg",
@@ -27,5 +29,4 @@
         "type": "image/png"
       }
     ]
-}
-  
+  }
