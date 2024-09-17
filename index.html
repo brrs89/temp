@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta atrás 5 minutos</title>
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registrado con éxito:', registration);
+                }, function(err) {
+                    console.log('Error en el registro del ServiceWorker:', err);
+                });
+            });
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        #countdown {
+            font-size: 48px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div id="countdown">05:00</div>
+
+    <script>
+        let countdownElement = document.getElementById('countdown');
+        let totalTime = 5 * 60; // 5 minutos en segundos
+
+        function startCountdown() {
+            let timeLeft = totalTime;
+
+            let countdownInterval = setInterval(function () {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+
+                countdownElement.textContent = 
+                    (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+                if (timeLeft === 0) {
+                    clearInterval(countdownInterval);
+                    // Vibrar durante 2 segundos (2000ms)
+                    if (navigator.vibrate) {
+                        navigator.vibrate(2000);
+                    }
+                    // Reiniciar la cuenta atrás
+                    setTimeout(startCountdown, 1000);
+                }
+
+                timeLeft--;
+            }, 1000);
+        }
+
+        startCountdown();
+    </script>
+
+
+
+</body>
+</html>
